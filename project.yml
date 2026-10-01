@@ -1,0 +1,56 @@
+name: PicAgo
+options:
+  bundleIdPrefix: com.picago
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: en
+  xcodeVersion: "15.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1"
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: "1.0"
+    GENERATE_INFOPLIST_FILE: false
+    INFOPLIST_FILE: Resources/Info.plist
+    DEVELOPMENT_LANGUAGE: en
+    SWIFT_STRICT_CONCURRENCY: complete
+packages:
+  PicAgoCore:
+    path: PicAgoCore
+targets:
+  PicAgo:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+      - path: Features
+      - path: Services
+      - path: Models
+      - path: Persistence
+      - path: DesignSystem
+      - path: Localization
+      - path: Resources
+        excludes:
+          - Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.picago.app
+        PRODUCT_NAME: PicAgo
+        INFOPLIST_FILE: Resources/Info.plist
+        INFOPLIST_KEY_CFBundleDisplayName: PicAgo
+        INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        SWIFT_EMIT_LOC_STRINGS: true
+        LOCALIZATION_PREFERS_STRING_CATALOGS: true
+        CODE_SIGN_STYLE: Automatic
+        SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD: false
+        SUPPORTED_INTERFACE_ORIENTATIONS: UIInterfaceOrientationPortrait
+    dependencies:
+      - package: PicAgoCore
+        product: PicAgoCore
+    scheme:
+      testTargets: []

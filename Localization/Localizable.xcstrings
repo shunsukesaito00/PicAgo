@@ -1,0 +1,271 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "onboarding.tagline" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "How well do you remember your photos?" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "あなた、この写真いつ撮ったか覚えてる？" } }
+      }
+    },
+    "onboarding.body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "PicAgo shows one of your own photos and asks what year you took it. Five memories a day — no account, nothing leaves your iPhone." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "PicAgoは、あなたの写真を1枚見せて「何年に撮った？」と聞きます。1日5問。アカウント不要。写真はiPhoneの外に出ません。" } }
+      }
+    },
+    "onboarding.cta" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play with my photos" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真から遊んでみる" } }
+      }
+    },
+    "onboarding.cta_hint" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Requests access to your photo library" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真ライブラリへのアクセスを求めます" } }
+      }
+    },
+    "onboarding.later" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not now" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "あとで" } }
+      }
+    },
+    "onboarding.denied_title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Photos are turned off" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真へのアクセスがオフです" } }
+      }
+    },
+    "onboarding.denied_body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "PicAgo needs photos on this iPhone to play. You can allow access in Settings." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "遊ぶにはこのiPhoneの写真が必要です。設定からアクセスを許可できます。" } }
+      }
+    },
+    "privacy.photos_stay" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your photos stay on your iPhone." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真はこのiPhoneの中だけに留まります。" } }
+      }
+    },
+    "home.headline" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today’s memories" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日の思い出" } }
+      }
+    },
+    "home.subhead" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Guess the year for five of your photos." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "あなたの写真5枚、撮影年を当ててみよう。" } }
+      }
+    },
+    "home.play" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Play today’s challenge" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日のチャレンジを始める" } }
+      }
+    },
+    "home.play_hint" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Starts the daily five-question memory game" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "1日5問のメモリーゲームを開始します" } }
+      }
+    },
+    "home.today_complete" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Today complete" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "今日は完了" } }
+      }
+    },
+    "home.come_back_tomorrow" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Come back tomorrow for new memories." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "また明日、新しい思い出で。" } }
+      }
+    },
+    "home.in_progress %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "In progress · %lld of 5" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "プレイ中 · %lld / 5" } }
+      }
+    },
+    "empty.permission_title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Allow photos to play" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真を許可して遊ぼう" } }
+      }
+    },
+    "empty.permission_body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "PicAgo only reads dates and shows photos on device. Nothing is uploaded." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "PicAgoは端末上で日付を読み、写真を表示するだけ。アップロードしません。" } }
+      }
+    },
+    "empty.few_photos_title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Need a few more photos" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "もう少し写真が必要です" } }
+      }
+    },
+    "empty.few_photos_body" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Add a handful of photos with dates, or allow more photos in Settings, then try again." } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "日付のある写真を数枚追加するか、設定でもっと写真を許可してからもう一度。" } }
+      }
+    },
+    "empty.open_settings" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Open Settings" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "設定を開く" } }
+      }
+    },
+    "empty.add_photos" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Choose more photos" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "写真を追加する" } }
+      }
+    },
+    "game.loading" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Loading memories" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "思い出を準備中" } }
+      }
+    },
+    "game.close" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Close" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "閉じる" } }
+      }
+    },
+    "game.correct" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Yes — that year" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "正解 — その年です" } }
+      }
+    },
+    "game.incorrect" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Not quite" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ちがう年でした" } }
+      }
+    },
+    "game.continue" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Continue" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "つづける" } }
+      }
+    },
+    "game.bonus_month_prompt" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bonus — which month?" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ボーナス — 何月だった？" } }
+      }
+    },
+    "game.bonus_correct" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Month bonus ✓" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "月ボーナス ✓" } }
+      }
+    },
+    "game.bonus_incorrect" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Different month" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "別の月でした" } }
+      }
+    },
+    "game.back_home" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Back home" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ホームへ戻る" } }
+      }
+    },
+    "game.years_ago %lld" : {
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : { "stringUnit" : { "state" : "translated", "value" : "%lld year ago" } },
+              "other" : { "stringUnit" : { "state" : "translated", "value" : "%lld years ago" } }
+            }
+          }
+        },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld年前" } }
+      }
+    },
+    "result.title" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Memory Score" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "メモリースコア" } }
+      }
+    },
+    "result.perfect" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Perfect day" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "パーフェクト" } }
+      }
+    },
+    "result.bonus %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Bonus months: %lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ボーナス月: %lld" } }
+      }
+    },
+    "result.streak %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Streak · %lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "ストリーク · %lld" } }
+      }
+    },
+    "result.share" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Share result" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "結果をシェア" } }
+      }
+    },
+    "result.share_hint" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Shares score text only — never photos or dates" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "スコアのテキストのみ共有。写真や日付は含みません" } }
+      }
+    },
+    "result.done" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Done" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "おわる" } }
+      }
+    },
+    "a11y.year_choice %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Year %lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld年" } }
+      }
+    },
+    "a11y.streak %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Current streak %lld days" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "現在のストリーク %lld日" } }
+      }
+    },
+    "a11y.progress %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Question %lld of %lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "%lld問目、全%lld問" } }
+      }
+    },
+    "a11y.photo" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Your photo for this question" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "この問題の写真" } }
+      }
+    },
+    "a11y.score %lld %lld" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Score %lld out of %lld" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "スコア %lld / %lld" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

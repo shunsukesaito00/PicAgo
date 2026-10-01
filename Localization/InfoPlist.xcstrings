@@ -1,0 +1,28 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "PicAgo" } },
+        "ja" : { "stringUnit" : { "state" : "translated", "value" : "PicAgo" } }
+      }
+    },
+    "NSPhotoLibraryUsageDescription" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PicAgo uses your photo library to show your own memories in a daily year-guessing game. Photos stay on your iPhone and are never uploaded."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PicAgoは、あなたの写真ライブラリを使って「撮影年当て」デイリーゲームを表示します。写真はこのiPhone内に留まり、外部へ送信しません。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
