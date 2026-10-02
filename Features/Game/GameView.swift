@@ -5,6 +5,7 @@ import PicAgoCore
 struct GameView: View {
     @Environment(AppSession.self) private var session
     @Environment(\.modelContext) private var modelContext
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var viewModel: GameViewModel?
     @State private var revealOpacity: Double = 0
 
@@ -48,16 +49,36 @@ struct GameView: View {
 
     private func gameContent(_ vm: GameViewModel) -> some View {
         GeometryReader { geo in
-            let photoHeight = geo.size.height * 0.58
+            let photoHeight = photoHeight(for: geo.size.height, phase: vm.phase)
             VStack(spacing: 0) {
                 topBar(vm)
-                photoArea(vm, height: photoHeight)
-                Spacer(minLength: PicAgoSpacing.sm)
+                photoArea(vm, height: photoHeight, width: geo.size.width)
                 bottomPanel(vm)
+                    .padding(.top, PicAgoSpacing.md)
                     .padding(.horizontal, PicAgoSpacing.screenHorizontal)
                     .padding(.bottom, PicAgoSpacing.lg)
+                    .frame(maxWidth: .infinity, alignment: .top)
+                Spacer(minLength: 0)
             }
+            .frame(width: geo.size.width, height: geo.size.height, alignment: .top)
         }
+    }
+
+    /// Keep photo ~50–65% of the first viewport; shrink slightly for reveal + large Dynamic Type.
+    private func photoHeight(for totalHeight: CGFloat, phase: GameViewModel.Phase) -> CGFloat {
+        let revealing: Bool = {
+            switch phase {
+            case .revealingYear, .revealingMonth: return true
+            default: return false
+            }
+        }()
+        var fraction: CGFloat = revealing ? 0.52 : 0.58
+        if dynamicTypeSize.isAccessibilitySize {
+            fraction = revealing ? 0.46 : 0.50
+        } else if dynamicTypeSize > .xxxLarge {
+            fraction = revealing ? 0.48 : 0.54
+        }
+        return min(max(totalHeight * fraction, totalHeight * 0.45), totalHeight * 0.65)
     }
 
     private func topBar(_ vm: GameViewModel) -> some View {
@@ -83,14 +104,14 @@ struct GameView: View {
         .padding(.top, PicAgoSpacing.xs)
     }
 
-    private func photoArea(_ vm: GameViewModel, height: CGFloat) -> some View {
+    private func photoArea(_ vm: GameViewModel, height: CGFloat, width: CGFloat) -> some View {
         ZStack {
             if let image = vm.currentImage {
                 #if canImport(UIKit)
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .frame(maxWidth: .infinity, maxHeight: height)
+                    .frame(width: width, height: height)
                     .clipped()
                 #endif
             } else {
@@ -101,7 +122,6 @@ struct GameView: View {
                             .font(.system(size: 36))
                             .foregroundStyle(.white.opacity(0.4))
                     }
-                    .frame(height: height)
             }
 
             if case .revealingYear(let correct, _) = vm.phase, let current = vm.current {
@@ -109,7 +129,8 @@ struct GameView: View {
                     .opacity(revealOpacity)
             }
         }
-        .frame(height: height)
+        .frame(width: width, height: height)
+        .clipped()
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(Text(String(localized: "a11y.photo")))
     }
@@ -119,19 +140,40 @@ struct GameView: View {
             Text(correct ? String(localized: "game.correct") : String(localized: "game.incorrect"))
                 .font(PicAgoTypography.headline)
                 .foregroundStyle(.white)
-            Text("\(question.correctYear)")
-                .font(.system(size: 40, weight: .bold))
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+            Text(verbatim: "\(question.correctYear)")
+                .font(.system(size: 40, weight: .bold, design: .rounded))
                 .foregroundStyle(.white)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .monospacedDigit()
             Text(formattedFullDate(question.creationDate))
                 .font(PicAgoTypography.callout)
-                .foregroundStyle(.white.opacity(0.9))
+                .foregroundStyle(.white.opacity(0.92))
+                .lineLimit(2)
+                .minimumScaleFactor(0.8)
+                .multilineTextAlignment(.center)
             Text(yearsAgoText(question.creationDate))
                 .font(PicAgoTypography.body)
                 .foregroundStyle(.white.opacity(0.95))
+                .lineLimit(1)
+                .minimumScaleFactor(0.8)
         }
-        .padding(PicAgoSpacing.lg)
+        .padding(.horizontal, PicAgoSpacing.lg)
+        .padding(.vertical, PicAgoSpacing.md)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(PicAgoColor.photoScrim)
+        .background(
+            LinearGradient(
+                colors: [
+                    Color.black.opacity(0.55),
+                    Color.black.opacity(0.28),
+                    Color.black.opacity(0.40)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        )
     }
 
     @ViewBuilder
@@ -146,6 +188,7 @@ struct GameView: View {
                     vm.continueAfterYearReveal()
                 } label: {
                     Text(String(localized: "game.continue"))
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
@@ -154,6 +197,8 @@ struct GameView: View {
                 Text(String(localized: "game.bonus_month_prompt"))
                     .font(PicAgoTypography.headline)
                     .foregroundStyle(.white)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 monthGrid(vm, interactive: true)
             }
         case .revealingMonth(let correct, let selected):
@@ -161,11 +206,15 @@ struct GameView: View {
                 Text(correct ? String(localized: "game.bonus_correct") : String(localized: "game.bonus_incorrect"))
                     .font(PicAgoTypography.headline)
                     .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
                 monthGrid(vm, interactive: false, selected: selected, wasCorrect: correct)
                 Button {
                     vm.continueAfterMonthReveal()
                 } label: {
                     Text(String(localized: "game.continue"))
+                        .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(PrimaryButtonStyle())
             }
@@ -183,18 +232,28 @@ struct GameView: View {
         let choices = vm.current?.yearChoices ?? []
         let correctYear = vm.current?.correctYear
         return LazyVGrid(
-            columns: [GridItem(.flexible()), GridItem(.flexible())],
+            columns: [
+                GridItem(.flexible(minimum: 0), spacing: PicAgoSpacing.yearGridGap),
+                GridItem(.flexible(minimum: 0), spacing: PicAgoSpacing.yearGridGap)
+            ],
             spacing: PicAgoSpacing.yearGridGap
         ) {
             ForEach(choices, id: \.self) { year in
                 YearChoiceButton(
                     year: year,
-                    state: yearState(year: year, interactive: interactive, selected: selected, wasCorrect: wasCorrect, correct: correctYear)
+                    state: yearState(
+                        year: year,
+                        interactive: interactive,
+                        selected: selected,
+                        wasCorrect: wasCorrect,
+                        correct: correctYear
+                    )
                 ) {
                     vm.selectYear(year)
                 }
             }
         }
+        .frame(maxWidth: .infinity)
         .accessibilityElement(children: .contain)
     }
 
@@ -207,7 +266,10 @@ struct GameView: View {
         let choices = vm.current?.monthChoices ?? []
         let correctMonth = vm.current?.correctMonth
         return LazyVGrid(
-            columns: [GridItem(.flexible()), GridItem(.flexible())],
+            columns: [
+                GridItem(.flexible(minimum: 0), spacing: PicAgoSpacing.yearGridGap),
+                GridItem(.flexible(minimum: 0), spacing: PicAgoSpacing.yearGridGap)
+            ],
             spacing: PicAgoSpacing.yearGridGap
         ) {
             ForEach(choices, id: \.self) { month in
@@ -216,8 +278,11 @@ struct GameView: View {
                 } label: {
                     Text(monthName(month))
                         .font(PicAgoTypography.yearChoice)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(monthForeground(month: month, interactive: interactive, selected: selected, wasCorrect: wasCorrect, correct: correctMonth))
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
                         .frame(maxWidth: .infinity, minHeight: 56)
+                        .padding(.vertical, PicAgoSpacing.xs)
                         .background(monthBackground(month: month, interactive: interactive, selected: selected, wasCorrect: wasCorrect, correct: correctMonth))
                         .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 }
@@ -226,6 +291,7 @@ struct GameView: View {
                 .accessibilityLabel(Text(monthName(month)))
             }
         }
+        .frame(maxWidth: .infinity)
     }
 
     private func yearState(
@@ -250,12 +316,24 @@ struct GameView: View {
         wasCorrect: Bool?,
         correct: Int?
     ) -> Color {
-        if interactive { return Color.white.opacity(0.92) }
+        if interactive { return PicAgoColor.choiceFill }
         if month == selected {
             return (wasCorrect == true) ? PicAgoColor.success : PicAgoColor.accent
         }
-        if month == correct { return PicAgoColor.success.opacity(0.85) }
-        return Color.white.opacity(0.35)
+        if month == correct { return PicAgoColor.success.opacity(0.9) }
+        return PicAgoColor.choiceFillMuted
+    }
+
+    private func monthForeground(
+        month: Int,
+        interactive: Bool,
+        selected: Int?,
+        wasCorrect: Bool?,
+        correct: Int?
+    ) -> Color {
+        if interactive { return PicAgoColor.choiceInk }
+        if month == selected || month == correct { return .white }
+        return PicAgoColor.choiceInkMuted
     }
 
     private var emptyState: some View {
@@ -297,8 +375,22 @@ struct GameView: View {
 
 #if DEBUG
 #Preview("Game") {
-    GameView()
+    let container = (try? PersistenceController.makeContainer(inMemory: true))
+        ?? (try? ModelContainer(for: DailyChallengeRecord.self, StreakRecord.self))
+    return GameView()
         .environment(AppSession(photoLibrary: MockPhotoLibraryService()))
-        .modelContainer(try! PersistenceController.makeContainer(inMemory: true))
+        .modifier(OptionalModelContainer(container: container))
+}
+
+private struct OptionalModelContainer: ViewModifier {
+    let container: ModelContainer?
+
+    func body(content: Content) -> some View {
+        if let container {
+            content.modelContainer(container)
+        } else {
+            content
+        }
+    }
 }
 #endif

@@ -10,7 +10,14 @@ enum PicAgoColor {
     static let inkSecondary = Color.secondary
     static let surface = Color(.systemBackground)
     static let surfaceElevated = Color(.secondarySystemBackground)
-    static let photoScrim = Color.black.opacity(0.28)
+    /// Readable overlay on photos (Light/Dark).
+    static let photoScrim = Color.black.opacity(0.45)
     static let success = Color(red: 0.22, green: 0.62, blue: 0.40)
     static let subtleFill = Color.primary.opacity(0.06)
+
+    /// Year/month choice tiles on the dark Game canvas — keep contrast high.
+    static let choiceFill = Color.white.opacity(0.94)
+    static let choiceFillMuted = Color.white.opacity(0.38)
+    static let choiceInk = Color(red: 0.16, green: 0.13, blue: 0.11)
+    static let choiceInkMuted = Color.white.opacity(0.78)
 }

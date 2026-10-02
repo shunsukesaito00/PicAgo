@@ -46,10 +46,13 @@ struct YearChoiceButton: View {
 
     var body: some View {
         Button(action: action) {
-            Text(String(year))
+            Text(verbatim: "\(year)")
                 .font(PicAgoTypography.yearChoice)
                 .foregroundStyle(foreground)
-                .frame(maxWidth: .infinity, minHeight: 64)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+                .frame(maxWidth: .infinity, minHeight: 56)
+                .padding(.vertical, PicAgoSpacing.xs)
                 .background(background)
                 .clipShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
                 .overlay(
@@ -64,26 +67,27 @@ struct YearChoiceButton: View {
 
     private var foreground: Color {
         switch state {
-        case .idle, .disabled: return PicAgoColor.ink
+        case .idle: return PicAgoColor.choiceInk
+        case .disabled: return PicAgoColor.choiceInkMuted
         case .selectedCorrect, .selectedWrong: return .white
         }
     }
 
     private var background: Color {
         switch state {
-        case .idle: return PicAgoColor.subtleFill
+        case .idle: return PicAgoColor.choiceFill
         case .selectedCorrect: return PicAgoColor.success
-        case .selectedWrong: return PicAgoColor.accent.opacity(0.9)
-        case .disabled: return PicAgoColor.subtleFill.opacity(0.5)
+        case .selectedWrong: return PicAgoColor.accent
+        case .disabled: return PicAgoColor.choiceFillMuted
         }
     }
 
     private var border: Color {
         switch state {
-        case .idle: return Color.primary.opacity(0.08)
+        case .idle: return Color.black.opacity(0.06)
         case .selectedCorrect: return PicAgoColor.success
         case .selectedWrong: return PicAgoColor.accent
-        case .disabled: return .clear
+        case .disabled: return Color.white.opacity(0.12)
         }
     }
 }
