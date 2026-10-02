@@ -375,22 +375,8 @@ struct GameView: View {
 
 #if DEBUG
 #Preview("Game") {
-    let container = (try? PersistenceController.makeContainer(inMemory: true))
-        ?? (try? ModelContainer(for: DailyChallengeRecord.self, StreakRecord.self))
-    return GameView()
+    GameView()
         .environment(AppSession(photoLibrary: MockPhotoLibraryService()))
-        .modifier(OptionalModelContainer(container: container))
-}
-
-private struct OptionalModelContainer: ViewModifier {
-    let container: ModelContainer?
-
-    func body(content: Content) -> some View {
-        if let container {
-            content.modelContainer(container)
-        } else {
-            content
-        }
-    }
+        .modelContainer(for: [DailyChallengeRecord.self, StreakRecord.self], inMemory: true)
 }
 #endif
